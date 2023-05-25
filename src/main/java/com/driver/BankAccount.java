@@ -27,7 +27,7 @@ public class BankAccount {
         String accNo="";
         int rem=sum;
         while(digits>0 && rem >0){
-            if(rem>9) {
+            if(rem>=9) {
                 accNo += "9";
                 rem = rem - 9;
             }
@@ -52,10 +52,9 @@ public class BankAccount {
 
     public void withdraw(double amount) throws Exception {
         // Remember to throw "Insufficient Balance" exception, if the remaining amount would be less than minimum balance
-        if(amount<minBalance){
-            throw new Exception("Insufficient Balance");
-        }
-        this.balance=this.balance-amount;
+        if (this.balance - amount >= getMinBalance()) {
+            this.balance = this.balance - amount;
+        } else throw new Exception("Insufficient Balance");
     }
 
 }
