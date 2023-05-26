@@ -1,22 +1,25 @@
 package com.driver;
 
+import lombok.Getter;
+
+@Getter
 public class SavingsAccount extends BankAccount{
     double rate;
     double maxWithdrawalLimit;
 
-    public double getRate() {
-        return rate;
-    }
-
-    public double getMaxWithdrawalLimit() {
-        return maxWithdrawalLimit;
-    }
+//    public double getRate() {
+//        return rate;
+//    }
+//
+//    public double getMaxWithdrawalLimit() {
+//        return maxWithdrawalLimit;
+//    }
 
     public SavingsAccount(String name, double balance, double maxWithdrawalLimit, double rate) {
         // minimum balance is 0 by default
         super(name,balance,0);
-        this.maxWithdrawalLimit = maxWithdrawalLimit;
-        this.rate = rate;
+        this.rate=rate;
+        this.maxWithdrawalLimit=maxWithdrawalLimit;
 
     }
     public void withdraw(double amount) throws Exception {
@@ -29,21 +32,19 @@ public class SavingsAccount extends BankAccount{
         else {
             throw new Exception("Maximum Withdraw Limit Exceeded");
         }
-
-
     }
 
     public double getSimpleInterest(int years){
         // Return the final amount considering that bank gives simple interest on current amount
-        double simpleInterest = getBalance() * (1+(rate * years)/100);
+        double balance=getBalance();
+        double simpleInterest=(getBalance()*years*(1+rate))/100;
         return simpleInterest;
-
     }
 
     public double getCompoundInterest(int times, int years){
         // Return the final amount considering that bank gives compound interest on current amount given times per year
-        double compoundInterest = getBalance() * Math.pow((1 + rate / (100*times)), times * years);
-        //  return compoundInterest;
+
+        double compoundInterest=getBalance() * Math.pow((1 + rate / (100*times)), times * years);
         return compoundInterest;
     }
 
