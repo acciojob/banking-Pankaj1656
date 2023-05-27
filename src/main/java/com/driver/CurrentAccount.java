@@ -30,7 +30,7 @@ public class CurrentAccount extends BankAccount{
             map.put(tradeLicenseId.charAt(i), map.getOrDefault(tradeLicenseId.charAt(i), 0) + 1);
         }
         if (Collections.max(map.values()) > (n + 1) / 2) {
-            throw new Exception("Valid License can not be generated");
+             throw new Exception("Valid License can not be generated");
         } else {
             int index1 = 0;
             int index2 = 1;
